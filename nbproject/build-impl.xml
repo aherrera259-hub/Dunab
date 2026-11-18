@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Compilación Ant sin bibliotecas externas. El IDE abre este proyecto como Java with Ant. -->
+<project name="DUNAB-impl" default="jar" basedir="..">
+    <target name="init">
+        <property file="nbproject/private/private.properties"/>
+        <property file="nbproject/project.properties"/>
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" source="${javac.source}" target="${javac.target}"
+               encoding="${source.encoding}" includeantruntime="false" debug="true"/>
+    </target>
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.jar}" basedir="${build.classes.dir}" manifest="${manifest.file}"/>
+    </target>
+    <target name="run" depends="compile">
+        <java classname="${main.class}" fork="true" failonerror="true" dir="${basedir}">
+            <classpath><pathelement location="${build.classes.dir}"/></classpath>
+        </java>
+    </target>
+    <target name="compile-test" depends="compile">
+        <mkdir dir="${build.test.classes.dir}"/>
+        <javac srcdir="${test.src.dir}" destdir="${build.test.classes.dir}" source="${javac.source}" target="${javac.target}"
+               encoding="${source.encoding}" includeantruntime="false">
+            <classpath><pathelement location="${build.classes.dir}"/></classpath>
+        </javac>
+    </target>
+    <target name="test" depends="compile-test">
+        <java classname="javaapplication1.PruebasDunab" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasAdmin" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasPersistencia" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasSemestres" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasCalculadora" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasTema" fork="true" failonerror="true">
+            <jvmarg value="-Djava.awt.headless=true"/>
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasNombres" fork="true" failonerror="true">
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+        <java classname="javaapplication1.PruebasParticipacion" fork="true" failonerror="true">
+            <jvmarg value="-Djava.awt.headless=true"/>
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+    </target>
+    <target name="javadoc" depends="compile">
+        <javadoc sourcepath="${src.dir}" destdir="${dist.dir}/javadoc" encoding="UTF-8" charset="UTF-8" failonerror="true"/>
+    </target>
+    <target name="test-ui" depends="compile-test">
+        <java classname="javaapplication1.PruebasNavegacion" fork="true" failonerror="true">
+            <jvmarg value="-Djava.awt.headless=false"/>
+            <classpath><pathelement location="${build.classes.dir}"/><pathelement location="${build.test.classes.dir}"/></classpath>
+        </java>
+    </target>
+    <target name="clean" depends="init">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>

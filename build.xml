@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="DUNAB" default="jar" basedir=".">
+    <description>Prototipo académico DUNAB, Swing y persistencia local.</description>
+    <import file="nbproject/build-impl.xml"/>
+</project>
